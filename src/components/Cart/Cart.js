@@ -3,7 +3,7 @@ import Product from '../Product/Product';
 import './Cart.css'
 
 const Cart = ({cart}) => {
-    // console.log(cart);
+    // console.log('cart',cart);
     // cart price add 
     let total = 0;
     let shipping = 0;

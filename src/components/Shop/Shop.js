@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 // cart, products => useState declare  
 const Shop = () => {
-  const [products, setProducts] = useState([]);
+  const products = useLoaderData();
+  // const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   // console.log(products);
 
+  //*******Loader used alternate of UseEffect******//
   //get product information data by fetch
-  useEffect(() => {
+  // useEffect(() => {
     // console.log('product Load before fetch');
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data)
-        // console.log('products loaded after fetch');
-      })
-  }, []);
-  // get Local Storage data call from fakeDb js
+  //   fetch("products.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setProducts(data)
+  //     })
+  // }, []);
+          // console.log('products loaded after fetch');
+  
+          // get Local Storage data call from fakeDb js
   useEffect(() => {
     // console.log('Local Storage First Line');
     const storedCart = getStoredCart();
     // console.log(storedCart);
-    //create a new array added products quantity
+    //create a new array stored products quantity & Value
     const savedCart = []
     for (const id in storedCart) {
       const addedProduct = products.find(product => product.id === id);
